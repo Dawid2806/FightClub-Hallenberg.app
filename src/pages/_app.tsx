@@ -2,7 +2,7 @@ import { Layout } from "@/Components/Layout/Layout";
 import "../styles/globals.css";
 import { NhostClient, NhostProvider } from "@nhost/nextjs";
 import { NhostApolloProvider } from "@nhost/react-apollo";
-
+import { Analytics } from "@vercel/analytics/react";
 import type { AppProps } from "next/app";
 import { NewsProvider } from "@/context/NewsContext";
 const nhost = new NhostClient({
@@ -18,6 +18,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <NewsProvider>
           <Layout>
             <Component {...pageProps} />
+
+            <Analytics />
           </Layout>
         </NewsProvider>
       </NhostApolloProvider>
