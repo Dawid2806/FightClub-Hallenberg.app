@@ -1,0 +1,71 @@
+scalar uuid
+
+mutation AddUserToTraining($user_id: uuid!, $training_id: uuid!) {
+  insert_Members_one(object: { userID: $user_id, trainingsID: $training_id }) {
+    id
+    createdAT
+  }
+  update_Trainings_by_pk(
+    pk_columns: { id: $training_id }
+    _inc: { places: 1 }
+  ) {
+    id
+    places
+  }
+}
+mutation RemoveUserFromTraining($user_id: uuid!, $training_id: uuid!) {
+  delete_Members(
+    where: { userID: { _eq: $user_id }, trainingsID: { _eq: $training_id } }
+  ) {
+    affected_rows
+  }
+  update_Trainings_by_pk(
+    pk_columns: { id: $training_id }
+    _inc: { places: -1 }
+  ) {
+    id
+    places
+  }
+}
+
+mutation AddNews(
+  $title: String!
+  $content: String!
+  $date: date!
+  $author: String!
+) {
+  insert_news_one(
+    object: { title: $title, content: $content, date: $date, author: $author }
+  ) {
+    id
+    title
+    content
+    date
+    author
+  }
+}
+mutation InsertUserLastVisit($userId: uuid!, $lastVisitDate: timestamptz!) {
+  insert_user_last_visits(
+    objects: { user_id: $userId, last_visit: $lastVisitDate }
+  ) {
+    affected_rows
+  }
+}
+
+mutation UpdateUserLastVisit($userId: uuid!, $lastVisitDate: timestamptz!) {
+  update_user_last_visits(
+    where: { user_id: { _eq: $userId } }
+    _set: { last_visit: $lastVisitDate }
+  ) {
+    affected_rows
+  }
+}
+
+mutation ResetTrainingPlacesAndRemoveMembers {
+  delete_Members(where: {}) {
+    affected_rows
+  }
+  update_Trainings(where: {}, _set: { places: 0 }) {
+    affected_rows
+  }
+}
