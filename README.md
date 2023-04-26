@@ -1,38 +1,132 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+echo "# Fight Club Hallenberg Booking App
 
-## Getting Started
+A booking application for Fight Club Hallenberg gym members. This app allows members to book training sessions and view news updates. The app is built using Next.js, Nhost, GraphQL, and Tailwind CSS.
 
-First, run the development server:
+[English](#english)
+[Deutsch](#deutsch)
 
-```bash
+<a name=\"english\"></a>
+
+## English
+
+### Prerequisites
+
+Before running the application, ensure you have the following:
+
+1. Node.js installed (version 14.x or higher)
+2. NPM installed (version 6.x or higher)
+
+### Installation
+
+To set up the project locally, follow these steps:
+
+1. Clone the repository:
+
+\`\`\`bash
+git clone https://github.com/Dawid2806/fightclub-hallenberg.app.git
+\`\`\`
+
+2. Change to the project directory:
+
+\`\`\`bash
+cd fightclub-hallenberg.app
+\`\`\`
+
+3. Install the dependencies:
+
+\`\`\`bash
+npm install
+\`\`\`
+
+4. Copy the \`.env.example\` file to \`.env.local\`:
+
+\`\`\`bash
+cp .env.example .env.local
+\`\`\`
+
+5. Update the environment variables in the \`.env.local\` file:
+
+- \`NHOST_BACKEND_URL\`: Your Nhost backend URL.
+- \`NHOST_JWT_SECRET\`: The JWT secret for your Nhost project.
+- \`NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN\`: Your Mapbox access token.
+
+### Running the application
+
+To start the development server, run the following command:
+
+\`\`\`bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can now access the application in your browser at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Deployment
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+To deploy the application, you can use a platform like [Vercel](https://vercel.com/), which is recommended for Next.js applications. Follow their deployment guide to set up your project for deployment.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### License
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project is licensed under the MIT License. For more information, see the [LICENSE](LICENSE) file.
 
-## Learn More
+<a name=\"deutsch\"></a>
 
-To learn more about Next.js, take a look at the following resources:
+## Deutsch
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Voraussetzungen
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Bevor Sie die Anwendung ausführen, stellen Sie sicher, dass Sie folgendes haben:
 
-## Deploy on Vercel
+1. Node.js installiert (Version 14.x oder höher)
+2. NPM installiert (Version 6.x oder höher)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Um das Projekt lokal einzurichten, führen Sie diese Schritte aus:
+
+1. Das Repository klonen:
+
+\`\`\`bash
+git clone https://github.com/Dawid2806/fightclub-hallenberg.app.git
+\`\`\`
+
+2. Wechseln Sie in das Projektverzeichnis:
+
+\`\`\`bash
+cd fightclub-hallenberg.app
+\`\`\`
+
+3. Installieren Sie die Abhängigkeiten:
+
+\`\`\`bash
+npm install
+\`\`\`
+
+4. Kopieren Sie die \`.env.example\` Datei nach \`.env.local\`:
+
+\`\`\`bash
+cp .env.example .env.local
+\`\`\`
+
+5. Aktualisieren Sie die Umgebungsvariablen in der \`.env.local\` Datei:
+
+- \`NHOST_BACKEND_URL\`: Ihre Nhost-Backend-URL.
+- \`NHOST_JWT_SECRET\`: Der JWT-Geheimcode für Ihr Nhost-Projekt.
+- \`NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN\`: Ihr Mapbox-Zugriffstoken.
+
+### Anwendung starten
+
+Um den Entwicklungsserver zu starten, führen Sie den folgenden Befehl aus:
+
+\`\`\`bash
+npm run dev
+\`\`\`
+
+Sie können nun auf die Anwendung in Ihrem Browser unter [http://localhost:3000](http://localhost:3000)zugreifen.
+
+### Bereitstellung
+
+Um die Anwendung bereitzustellen, können Sie eine Plattform wie Vercel verwenden, die für Next.js-Anwendungen empfohlen wird. Befolgen Sie deren Bereitstellungsanleitung, um Ihr Projekt für die Bereitstellung einzurichten.
+
+### Lizenz
+
+Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der Datei LICENSE.[LICENSE](LICENSE).
