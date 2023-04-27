@@ -30,6 +30,23 @@ const TrainingDetails = ({ data }: TrainingDetailsProps) => {
       <p className="text-center text-lg mb-4 capitalize	">
         am: {data.Trainings_by_pk?.dayofWeek}
       </p>
+      <p className="text-center text-lg mb-4 capitalize	">
+        Trainer: <span>{data.Trainings_by_pk?.coachName}</span>
+      </p>
+      <p className="text-center text-lg mb-4 capitalize	">
+        Woche:{" "}
+        {data.Trainings_by_pk?.isMorning === true ? (
+          <span className="text-red-700">
+            Achtung diese woche spätschicht woche !!
+          </span>
+        ) : (
+          <span>Frühschicht</span>
+        )}
+      </p>
+      <p className="text-center text-lg mb-4 capitalize	">
+        um : {data.Trainings_by_pk?.time.slice(0, -3)} uhr
+      </p>
+
       <h3 className="text-center text-xl font-semibold my-4">Mitglieder:</h3>
       <ul className="space-y-2">
         {data.Trainings_by_pk?.Members.map((member) => (

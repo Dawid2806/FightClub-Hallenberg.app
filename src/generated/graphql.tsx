@@ -6103,7 +6103,7 @@ export type GetAllUsersInCurrentTrainingQueryVariables = Exact<{
 }>;
 
 
-export type GetAllUsersInCurrentTrainingQuery = { __typename?: 'query_root', Trainings_by_pk?: { __typename?: 'Trainings', id: string, title: string, dayofWeek: string, time: any, Members: Array<{ __typename?: 'Members', user: { __typename?: 'users', email?: any | null, displayName: string } }> } | null };
+export type GetAllUsersInCurrentTrainingQuery = { __typename?: 'query_root', Trainings_by_pk?: { __typename?: 'Trainings', id: string, title: string, dayofWeek: string, time: any, isMorning: boolean, coachName: string, Members: Array<{ __typename?: 'Members', user: { __typename?: 'users', email?: any | null, displayName: string } }> } | null };
 
 export type GetAllNewsQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']>;
@@ -6483,6 +6483,8 @@ export const GetAllUsersInCurrentTrainingDocument = gql`
     title
     dayofWeek
     time
+    isMorning
+    coachName
     Members {
       user {
         email

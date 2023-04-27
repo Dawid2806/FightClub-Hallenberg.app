@@ -43,6 +43,9 @@ query GetAllUsersInCurrentTraining($training_id: uuid!) {
     title
     dayofWeek
     time
+    isMorning
+    coachName
+
     Members {
       user {
         email
