@@ -66,8 +66,10 @@ export const TraningItem = ({
           <dd className="text-sm  font-medium">{time.slice(0, -3)}</dd>
         </div>
         <div className="flex flex-col-reverse">
-          <dt className="text-xs ">Laufzeit</dt>
-          <dd className="text-sm font-medium">1h 15 min</dd>
+          <dt className="text-xs ">Dauer</dt>
+          <dd className="text-sm font-medium">
+            {title === "Offene Matte" ? "3h" : "1h 15min"}
+          </dd>
         </div>
 
         <div className="flex flex-col-reverse">
