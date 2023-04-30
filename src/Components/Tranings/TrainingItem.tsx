@@ -8,7 +8,6 @@ interface TraningItemProps {
   places: number;
   maxPlaces: number;
   time: string;
-  couchName: string;
 }
 
 export const TraningItem = ({
@@ -17,7 +16,6 @@ export const TraningItem = ({
   maxPlaces,
   places,
   id,
-  couchName,
 }: TraningItemProps) => {
   const user = useUserData();
 
@@ -53,10 +51,6 @@ export const TraningItem = ({
       <div className="sm:flex m-auto  justify-center sm:gap-4">
         <div>
           <h3 className="text-lg font-bold uppercase  sm:text-xl">{title}</h3>
-
-          <p className="mt-1 text-xs font-medium capitalize ">
-            Trainer: <span className="font-bold">{couchName}</span>
-          </p>
         </div>
       </div>
 
