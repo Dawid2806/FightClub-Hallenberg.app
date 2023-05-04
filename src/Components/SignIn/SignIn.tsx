@@ -66,11 +66,14 @@ export const SignIn = () => {
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="">
             <div className="-space-y-px rounded-md shadow-sm flex flex-col gap-2 px-10">
-              <SmartInput name="email" type="email" autoComplete="email" />
+              <SmartInput name="email" type="email" autoComplete="email"                 placeholder="Email"
+ />
               <SmartInput
                 name="password"
                 type="password"
                 autoComplete="password"
+                                placeholder="Password"
+
               />
               {isError && (
                 <span className="text-center text-red-700">
