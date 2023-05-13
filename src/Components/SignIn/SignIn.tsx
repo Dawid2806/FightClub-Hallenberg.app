@@ -61,7 +61,6 @@ export const SignIn = () => {
   }
 
   return (
-<<<<<<< HEAD
     <div>
       <div>
         <NavForNotLoggedIn />
@@ -83,28 +82,34 @@ export const SignIn = () => {
                     {error?.message}
                   </span>
                 )}
-=======
-    <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
-        <div className="bg-[url('../../public/images/Logo.5.png')] w-52 h-52 bg-contain bg-no-repeat mt-8 mx-auto"></div>
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)} className="">
-            <div className="-space-y-px rounded-md shadow-sm flex flex-col gap-2 px-10">
-              <SmartInput name="email" type="email" autoComplete="email"                 placeholder="Email"
- />
-              <SmartInput
-                name="password"
-                type="password"
-                autoComplete="password"
-                                placeholder="Password"
-
-              />
-              {isError && (
-                <span className="text-center text-red-700">
-                  {error?.message}
-                </span>
-              )}
->>>>>>> 919af04d3e14acd736353fb1f25202f5e72f4a62
+              </div>
+            </form>
+          </FormProvider>
+        </div>
+      </div>
+      <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div className="w-full max-w-md space-y-8">
+          <div className="bg-[url('../../public/images/Logo.5.png')] w-52 h-52 bg-contain bg-no-repeat mt-8 mx-auto"></div>
+          <FormProvider {...methods}>
+            <form onSubmit={methods.handleSubmit(onSubmit)} className="">
+              <div className="-space-y-px rounded-md shadow-sm flex flex-col gap-2 px-10">
+                <SmartInput
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="Email"
+                />
+                <SmartInput
+                  name="password"
+                  type="password"
+                  autoComplete="password"
+                  placeholder="Password"
+                />
+                {isError && (
+                  <span className="text-center text-red-700">
+                    {error?.message}
+                  </span>
+                )}
 
                 <button
                   type="submit"
