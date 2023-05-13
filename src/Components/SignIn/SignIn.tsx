@@ -8,6 +8,7 @@ import {
   useInsertUserLastVisitMutation,
   useUpdateUserLastVisitMutation,
 } from "@/generated/graphql";
+import { NavForNotLoggedIn } from "../NavForNotLoggedIn/NavForNotLoggedIn";
 const schema = yup
   .object({
     email: yup.string().required(),
@@ -60,35 +61,40 @@ export const SignIn = () => {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
-        <div className="bg-[url('../../public/images/Logo.5.png')] w-52 h-52 bg-contain bg-no-repeat mt-8 mx-auto"></div>
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)} className="">
-            <div className="-space-y-px rounded-md shadow-sm flex flex-col gap-2 px-10">
-              <SmartInput name="email" type="email" autoComplete="email" />
-              <SmartInput
-                name="password"
-                type="password"
-                autoComplete="password"
-              />
-              {isError && (
-                <span className="text-center text-red-700">
-                  {error?.message}
-                </span>
-              )}
+    <div>
+      <div>
+        <NavForNotLoggedIn />
+      </div>
+      <div className="flex h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div className="w-full max-w-md space-y-8">
+          <div className="bg-[url('../../public/images/Logo.5.png')] w-52 h-52 bg-contain bg-no-repeat mt-8 mx-auto"></div>
+          <FormProvider {...methods}>
+            <form onSubmit={methods.handleSubmit(onSubmit)} className="">
+              <div className="-space-y-px rounded-md shadow-sm flex flex-col gap-2 px-10">
+                <SmartInput name="email" type="email" autoComplete="email" />
+                <SmartInput
+                  name="password"
+                  type="password"
+                  autoComplete="password"
+                />
+                {isError && (
+                  <span className="text-center text-red-700">
+                    {error?.message}
+                  </span>
+                )}
 
-              <button
-                type="submit"
-                className=" flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Anmelden
-              </button>
-            </div>
+                <button
+                  type="submit"
+                  className=" flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Anmelden
+                </button>
+              </div>
 
-            <div></div>
-          </form>
-        </FormProvider>
+              <div></div>
+            </form>
+          </FormProvider>
+        </div>
       </div>
     </div>
   );
