@@ -147,6 +147,7 @@ export const TrainingList = () => {
                     time={training.time}
                     places={training.places}
                     maxPlaces={training.maxPlaces}
+                    day={training.dayofWeek}
                   />
                 ))}
               </div>

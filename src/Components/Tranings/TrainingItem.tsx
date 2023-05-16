@@ -8,6 +8,7 @@ interface TraningItemProps {
   places: number;
   maxPlaces: number;
   time: string;
+  day: string;
 }
 
 export const TraningItem = ({
@@ -16,11 +17,24 @@ export const TraningItem = ({
   maxPlaces,
   places,
   id,
+  day,
 }: TraningItemProps) => {
   const user = useUserData();
 
+  const daysWeek = [
+    "sonntag",
+    "montag",
+    "dienstag",
+    "mittwoch",
+    "donnerstag",
+    "freitag",
+    "samstag",
+  ];
+  const dayWeek = daysWeek.indexOf(day);
+  const today = new Date().getDay();
   const { AddUserToTraining, RemoveUserFromTraining, isCurrentUserInTraining } =
     useHandleRegister({ id, user, maxPlaces, places });
+  const isPastDay = dayWeek < today;
 
   return (
     <div className="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8 text-gray-800 dark:text-gray-200">
@@ -33,6 +47,14 @@ export const TraningItem = ({
           >
             von Traning abmelden
           </button>
+        </>
+      )}
+      {isPastDay && (
+        <>
+          <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
+          <div className="absolute flex flex-col whitespace-nowrap top-1/2 left-1/2 text-white transform -translate-x-1/2 -translate-y-1/2 p-4 bg-red-700 z-20 font-bold rounded-2xl">
+            <p className="uppercase">Training beendet </p>
+          </div>
         </>
       )}
       {!isCurrentUserInTraining &&

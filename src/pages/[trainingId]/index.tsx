@@ -19,6 +19,7 @@ const TrainingDetails = ({ data }: TrainingDetailsProps) => {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
+  console.log(data);
   return (
     <main className=" flex flex-col justify-center items-center mt-20">
       <Head>
@@ -103,7 +104,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       data,
     },
-    revalidate: 1,
+    revalidate: 300,
   };
 };
 
