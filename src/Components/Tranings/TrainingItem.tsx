@@ -22,7 +22,6 @@ export const TraningItem = ({
   const user = useUserData();
 
   const daysWeek = [
-    "first day",
     "montag",
     "dienstag",
     "mittwoch",
@@ -31,7 +30,7 @@ export const TraningItem = ({
     "samstag",
   ];
   const dayWeek = daysWeek.indexOf(day);
-  const today = new Date().getDay();
+  const today = new Date().getDay() - 1;
   const { AddUserToTraining, RemoveUserFromTraining, isCurrentUserInTraining } =
     useHandleRegister({ id, user, maxPlaces, places });
   const isPastDay = dayWeek < today;
