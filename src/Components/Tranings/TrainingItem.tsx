@@ -22,7 +22,7 @@ export const TraningItem = ({
   const user = useUserData();
 
   const daysWeek = [
-    "sonntag",
+    "first day",
     "montag",
     "dienstag",
     "mittwoch",
