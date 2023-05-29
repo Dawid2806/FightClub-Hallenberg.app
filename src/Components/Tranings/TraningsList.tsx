@@ -20,7 +20,7 @@ const orderedDaysOfWeek = [
 ];
 
 const getCurrentTrainingPeriod = () => {
-  const startDate = new Date(2023, 3, 24);
+  const startDate = new Date(2023, 4, 1);
   const oneWeek = 7 * 24 * 60 * 60 * 1000;
   const now = new Date();
   const timeSinceStart = now.getTime() - startDate.getTime();
