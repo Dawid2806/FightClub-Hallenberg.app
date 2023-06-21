@@ -26,7 +26,8 @@ const getCurrentTrainingPeriod = () => {
   const timeSinceStart = now.getTime() - startDate.getTime();
   const weekIndex = Math.floor(timeSinceStart / oneWeek);
 
-  return (weekIndex + 1) % 3 === 0;
+  // return (weekIndex + 1) % 3 === 0;
+  return false 
 };
 
 const filterTrainingsByRole = (
