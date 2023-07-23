@@ -20,13 +20,14 @@ const orderedDaysOfWeek = [
 ];
 
 const getCurrentTrainingPeriod = () => {
-  const startDate = new Date(2023, 5, 5);
+  const startDate = new Date(2023, 6, 19);
   const oneWeek = 7 * 24 * 60 * 60 * 1000;
   const now = new Date();
   const timeSinceStart = now.getTime() - startDate.getTime();
   const weekIndex = Math.floor(timeSinceStart / oneWeek);
 
-  return (weekIndex + 1) % 3 === 0;
+  // return (weekIndex + 1) % 3 === 0;
+  return false 
 };
 
 const filterTrainingsByRole = (
