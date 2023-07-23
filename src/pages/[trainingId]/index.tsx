@@ -9,15 +9,42 @@ import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { apolloClient } from "../../graphql/apolloClient";
 import Head from "next/head";
+import { useQuery } from "@apollo/client";
 
 interface TrainingDetailsProps {
   data: GetAllUsersInCurrentTrainingQuery;
+  loading: boolean;
 }
 
-const TrainingDetails = ({ data }: TrainingDetailsProps) => {
+const TrainingDetails = ({}) => {
   const router = useRouter();
-  if (router.isFallback) {
+  const { trainingId } = router.query;
+
+  if (!trainingId) {
     return <div>Loading...</div>;
+  }
+
+  const { loading, error, data } = useQuery<GetAllUsersInCurrentTrainingQuery>(
+    GetAllUsersInCurrentTrainingDocument,
+    {
+      variables: {
+        training_id: trainingId,
+      },
+      pollInterval: 1000,
+    }
+  );
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    console.error(error);
+    return <div>Error...</div>;
+  }
+
+  if (!data || !data.Trainings_by_pk) {
+    return <div>No data...</div>;
   }
   return (
     <main className=" flex flex-col justify-center items-center mt-20">
@@ -33,16 +60,7 @@ const TrainingDetails = ({ data }: TrainingDetailsProps) => {
       <p className="text-center text-lg mb-4 capitalize	">
         Trainer: <span>{data.Trainings_by_pk?.coachName}</span>
       </p>
-      <p className="text-center text-lg mb-4 capitalize	">
-        Woche:{" "}
-        {data.Trainings_by_pk?.isMorning === true ? (
-          <span className="text-red-700">
-            Achtung diese woche spätschicht woche !!
-          </span>
-        ) : (
-          <span>Frühschicht</span>
-        )}
-      </p>
+
       <p className="text-center text-lg mb-4 capitalize	">
         um : {data.Trainings_by_pk?.time.slice(0, -3)} uhr
       </p>
@@ -83,7 +101,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
   const trainingId = params?.trainingId;
 
-  const { data } = await apolloClient.query<
+  const { data, loading } = await apolloClient.query<
     GetAllUsersInCurrentTrainingQuery,
     GetAllUsersInCurrentTrainingQueryVariables
   >({
@@ -101,7 +119,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      data,
+      data: data,
+      loading: loading,
     },
     revalidate: 1,
   };
