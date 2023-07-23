@@ -20,10 +20,6 @@ const TrainingDetails = ({}) => {
   const router = useRouter();
   const { trainingId } = router.query;
 
-  if (!trainingId) {
-    return <div>Loading...</div>;
-  }
-
   const { loading, error, data } = useQuery<GetAllUsersInCurrentTrainingQuery>(
     GetAllUsersInCurrentTrainingDocument,
     {
@@ -33,7 +29,9 @@ const TrainingDetails = ({}) => {
       pollInterval: 1000,
     }
   );
-
+  if (!trainingId) {
+    return <div>Loading...</div>;
+  }
   if (loading) {
     return <div>Loading...</div>;
   }
