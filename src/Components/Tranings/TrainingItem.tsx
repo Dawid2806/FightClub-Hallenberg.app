@@ -1,6 +1,7 @@
 import { useUserData } from "@nhost/react";
 import { useHandleRegister } from "./useHandleRegister";
 import Link from "next/link";
+import { TrainingNotToRegister } from "./TrainingNotToRegister";
 
 interface TraningItemProps {
   id: string;
@@ -31,7 +32,7 @@ export const TraningItem = ({
     "sonntag",
   ];
   const dayWeek = daysWeek.indexOf(day);
-
+  console.log(dayWeek);
   let today = new Date().getDay() - 1;
 
   const { AddUserToTraining, RemoveUserFromTraining, isCurrentUserInTraining } =
@@ -39,6 +40,36 @@ export const TraningItem = ({
 
   const isPastDay = dayWeek < today;
 
+  const isLessThan10HoursBeforeTraining = (
+    trainingTime: string,
+    trainingDayWeek: number
+  ) => {
+    const now = new Date();
+
+    const trainingDate = new Date();
+    const [hours, minutes] = trainingTime.split(":").map(Number);
+    trainingDate.setHours(hours, minutes, 0, 0);
+
+    const currentDayOfWeek = now.getDay();
+
+    trainingDayWeek = trainingDayWeek === 0 ? 6 : trainingDayWeek + 1;
+
+    if (currentDayOfWeek === trainingDayWeek) {
+      trainingDate.setDate(now.getDate());
+    } else if (currentDayOfWeek < trainingDayWeek) {
+      const daysToAdd = trainingDayWeek - currentDayOfWeek;
+      trainingDate.setDate(now.getDate() + daysToAdd);
+    } else {
+      return false;
+    }
+
+    const differenceInMilliseconds = trainingDate.getTime() - now.getTime();
+    const timeBeforeTraining = 90 * 60 * 1000;
+
+    return differenceInMilliseconds <= timeBeforeTraining;
+  };
+  const isRegistrationBlocked = isLessThan10HoursBeforeTraining(time, dayWeek);
+  console.log(isRegistrationBlocked);
   return (
     <div className="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8 text-gray-800 dark:text-gray-200">
       {isCurrentUserInTraining && (
@@ -54,23 +85,21 @@ export const TraningItem = ({
       )}
       {isPastDay && (
         <>
-          <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
-          <div className="absolute flex flex-col whitespace-nowrap top-1/2 left-1/2 text-white transform -translate-x-1/2 -translate-y-1/2 p-4 bg-red-700 z-20 font-bold rounded-2xl">
-            <p className="uppercase">Training beendet </p>
-          </div>
+          <TrainingNotToRegister title="Training beendet" />
         </>
       )}
       {!isCurrentUserInTraining &&
         places === maxPlaces &&
         !user?.roles.includes("admin") && (
           <>
-            <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
-            <div className="absolute flex flex-col whitespace-nowrap top-1/2 left-1/2 text-white transform -translate-x-1/2 -translate-y-1/2 p-4 bg-red-700 z-20 font-bold rounded-2xl">
-              <p className="uppercase">Alle platze beleg</p>
-            </div>
+            <TrainingNotToRegister title="Alle platze beleg" />
           </>
         )}
-
+      {isRegistrationBlocked && (
+        <>
+          <TrainingNotToRegister title="Anmeldung geschlossen" />
+        </>
+      )}
       <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
 
       <div className="sm:flex m-auto  justify-center sm:gap-4">
