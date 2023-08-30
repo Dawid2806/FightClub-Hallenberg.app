@@ -95,7 +95,7 @@ export const TraningItem = ({
             <TrainingNotToRegister title="Alle platze beleg" />
           </>
         )}
-      {isRegistrationBlocked && (
+      {isRegistrationBlocked && !user?.roles.includes("admin") && (
         <>
           <TrainingNotToRegister title="Anmeldung geschlossen" />
         </>
