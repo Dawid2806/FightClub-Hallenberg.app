@@ -6,13 +6,13 @@ import Head from "next/head";
 
 export default function Home() {
   const user = useUserData();
-
   const { isAuthenticated } = useAuthenticationStatus();
   return (
     <div className="bg-white dark:bg-black">
       <Head>
         <title>FightClub-Hallenberg APP</title>
       </Head>
+
       {isAuthenticated && (
         <main>
           <div>

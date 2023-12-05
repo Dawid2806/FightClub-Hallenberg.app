@@ -1,5 +1,5 @@
 import React from "react";
-import { useSignInEmailPassword } from "@nhost/react";
+import { useSignInEmailPassword } from "@nhost/nextjs";
 import { SmartInput } from "../SmartComponents/SmartInput";
 import { FormProvider, useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -21,8 +21,11 @@ interface SignInFormProps {
   password: string;
 }
 export const SignIn = () => {
+  const { signInEmailPassword, isSuccess, isError, error } =
+    useSignInEmailPassword();
   const [insertUserLastVisit] = useInsertUserLastVisitMutation();
   const [updateUserLastVisit] = useUpdateUserLastVisitMutation();
+
   const methods = useForm<SignInFormProps>({
     resolver: yupResolver(schema),
   });
@@ -53,9 +56,6 @@ export const SignIn = () => {
       console.error("Logowanie nie powiodło się", error);
     }
   };
-
-  const { signInEmailPassword, isSuccess, isError, error } =
-    useSignInEmailPassword();
 
   if (isSuccess) {
   }

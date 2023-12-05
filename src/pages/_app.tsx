@@ -6,7 +6,6 @@ import { Analytics } from "@vercel/analytics/react";
 import type { AppProps } from "next/app";
 import { NewsProvider } from "@/context/NewsContext";
 const nhost = new NhostClient({
-  backendUrl: process.env.NEXT_PUBLIC_NHOST_BACKEND_URL || "",
   subdomain: process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN || "",
   region: process.env.NEXT_PUBLIC_NHOST_REGION,
   graphqlUrl: process.env.NEXT_PUBLIC_NHOST_GRAPHQL_URL,
